@@ -163,7 +163,6 @@ public class CartFragment extends BaseFragment {
         bottomSheetDialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
 
 
-
         TextView tvFoodsOrder = viewDialog.findViewById(R.id.tv_foods_order);
         TextView tvPriceOrder = viewDialog.findViewById(R.id.tv_price_order);
         TextView edtNameOrder = viewDialog.findViewById(R.id.edt_name_order);
@@ -190,7 +189,7 @@ public class CartFragment extends BaseFragment {
                 long id = System.currentTimeMillis();
                 String strEmail = DataStoreManager.getUser().getEmail();
                 Order order = new Order(id, strName, strEmail, strPhone, strAddress,
-                        mAmount, getStringListFoodsOrder(), Constant.TYPE_PAYMENT_CASH, false);
+                        mAmount, getStringListFoodsOrder(), Constant.TYPE_PAYMENT_CASH, false, false);
                 ControllerApplication.get(getActivity()).getBookingDatabaseReference()
                         .child(String.valueOf(id))
                         .setValue(order, (error1, ref1) -> {

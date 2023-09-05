@@ -1,6 +1,7 @@
 package com.pro.foodorder.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -29,8 +30,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemOrderBinding itemOrderBinding = ItemOrderBinding.inflate(LayoutInflater.from(parent.getContext()),
-                parent, false);
+        ItemOrderBinding itemOrderBinding = ItemOrderBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new OrderViewHolder(itemOrderBinding);
     }
 
@@ -55,6 +55,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         String strAmount = StringUtil.toVND(order.getAmount()) + Constant.CURRENCY;
         holder.mItemOrderBinding.tvTotalAmount.setText(strAmount);
+        holder.mItemOrderBinding.tvDeliveryStatus.setTextColor(order.isDeliverStatus() ? mContext.getResources().getColor(R.color.green) : Color.RED);
+        holder.mItemOrderBinding.tvDeliveryStatus.setText(order.isDeliverStatus() ? R.string.delivered : R.string.delivering);
+
 
         String paymentMethod = "";
         if (Constant.TYPE_PAYMENT_CASH == order.getPayment()) {

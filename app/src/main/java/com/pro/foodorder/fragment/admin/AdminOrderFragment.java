@@ -55,7 +55,7 @@ public class AdminOrderFragment extends BaseFragment {
         mFragmentAdminOrderBinding.rcvOrder.setLayoutManager(linearLayoutManager);
         mListOrder = new ArrayList<>();
         mAdminOrderAdapter = new AdminOrderAdapter(getActivity(), mListOrder,
-                this::handleUpdateStatusOrder);
+                mIUpdateStatusListener);
         mFragmentAdminOrderBinding.rcvOrder.setAdapter(mAdminOrderAdapter);
     }
 
@@ -120,12 +120,32 @@ public class AdminOrderFragment extends BaseFragment {
                 });
     }
 
+    AdminOrderAdapter.IUpdateStatusListener mIUpdateStatusListener = new AdminOrderAdapter.IUpdateStatusListener() {
+        @Override
+        public void updateStatus(Order order) {
+            handleUpdateStatusOrder(order);
+        }
+
+        @Override
+        public void updateDeliverStatus(Order order) {
+            handleUpdateDeliverStatusOrder(order);
+        }
+    };
+
     private void handleUpdateStatusOrder(Order order) {
         if (getActivity() == null) {
             return;
         }
         ControllerApplication.get(getActivity()).getBookingDatabaseReference()
                 .child(String.valueOf(order.getId())).child("completed").setValue(!order.isCompleted());
+    }
+
+    private void handleUpdateDeliverStatusOrder(Order order) {
+        if (getActivity() == null) {
+            return;
+        }
+        ControllerApplication.get(getActivity()).getBookingDatabaseReference()
+                .child(String.valueOf(order.getId())).child("deliverStatus").setValue(!order.isDeliverStatus());
     }
 
     @Override
