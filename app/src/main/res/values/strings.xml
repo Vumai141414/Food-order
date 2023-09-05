@@ -169,4 +169,6 @@
     <string name="vnd">VND</string>
     <string name="image_other">Mô tả khác (ảnh)</string>
     <string name="other_image">Các ảnh khác</string>
+    <string name="delivered">Đã giao hàng</string>
+    <string name="delivering">Đang giao hàng</string>
 </resources>

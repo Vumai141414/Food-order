@@ -14,11 +14,13 @@ public class Order implements Serializable {
     private int payment;
     private boolean completed;
 
+    private boolean deliverStatus;
+
+
     public Order() {
     }
 
-    public Order(long id, String name, String email, String phone,
-                 String address, int amount, String foods, int payment, boolean completed) {
+    public Order(long id, String name, String email, String phone, String address, int amount, String foods, int payment, boolean completed, boolean deliverStatus) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -28,6 +30,7 @@ public class Order implements Serializable {
         this.foods = foods;
         this.payment = payment;
         this.completed = completed;
+        this.deliverStatus = deliverStatus;
     }
 
     public long getId() {
@@ -100,5 +103,13 @@ public class Order implements Serializable {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public boolean isDeliverStatus() {
+        return deliverStatus;
+    }
+
+    public void setDeliverStatus(boolean deliverStatus) {
+        this.deliverStatus = deliverStatus;
     }
 }

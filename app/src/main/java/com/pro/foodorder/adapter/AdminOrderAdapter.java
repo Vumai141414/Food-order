@@ -1,6 +1,7 @@
 package com.pro.foodorder.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -25,6 +26,8 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
 
     public interface IUpdateStatusListener {
         void updateStatus(Order order);
+
+        void updateDeliverStatus(Order order);
     }
 
     public AdminOrderAdapter(Context mContext, List<Order> mListOrder, IUpdateStatusListener listener) {
@@ -53,6 +56,8 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
             holder.mItemAdminOrderBinding.layoutItem.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         }
         holder.mItemAdminOrderBinding.chbStatus.setChecked(order.isCompleted());
+        holder.mItemAdminOrderBinding.chbDeliveryStatus.setChecked(order.isDeliverStatus());
+
         holder.mItemAdminOrderBinding.tvId.setText(String.valueOf(order.getId()));
         holder.mItemAdminOrderBinding.tvEmail.setText(order.getEmail());
         holder.mItemAdminOrderBinding.tvName.setText(order.getName());
@@ -63,7 +68,8 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
 
         String strAmount = StringUtil.toVND(order.getAmount()) + Constant.CURRENCY;
         holder.mItemAdminOrderBinding.tvTotalAmount.setText(strAmount);
-
+        holder.mItemAdminOrderBinding.tvDeliveryStatus.setText(order.isDeliverStatus() ? R.string.delivered : R.string.delivering);
+        holder.mItemAdminOrderBinding.tvDeliveryStatus.setTextColor(order.isDeliverStatus() ? mContext.getResources().getColor(R.color.green) : Color.RED);
         String paymentMethod = "";
         if (Constant.TYPE_PAYMENT_CASH == order.getPayment()) {
             paymentMethod = Constant.PAYMENT_METHOD_CASH;
@@ -71,6 +77,8 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Ad
         holder.mItemAdminOrderBinding.tvPayment.setText(paymentMethod);
         holder.mItemAdminOrderBinding.chbStatus.setOnClickListener(
                 v -> mIUpdateStatusListener.updateStatus(order));
+        holder.mItemAdminOrderBinding.chbDeliveryStatus.setOnClickListener(
+                v -> mIUpdateStatusListener.updateDeliverStatus(order));
     }
 
     @Override
