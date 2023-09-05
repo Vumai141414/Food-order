@@ -45,7 +45,7 @@ public class AdminOrderFragment extends BaseFragment {
         if (getActivity() != null) {
             ((AdminMainActivity) getActivity()).setToolBar(getString(R.string.order));
             ((AdminMainActivity) getActivity()).setImgCartVisibility(true);
-            ((AdminMainActivity) getActivity()).setImgCartCount(mListOrder.size())
+            ((AdminMainActivity) getActivity()).setImgCartCount(mListOrder.size());
         }
     }
 
