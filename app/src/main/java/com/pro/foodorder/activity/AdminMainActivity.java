@@ -83,4 +83,12 @@ public class AdminMainActivity extends BaseActivity {
         mActivityAdminMainBinding.toolbar.layoutToolbar.setVisibility(View.VISIBLE);
         mActivityAdminMainBinding.toolbar.tvTitle.setText(title);
     }
+
+    public void setImgCartVisibility(boolean isVisible) {
+        mActivityAdminMainBinding.toolbar.imgCart.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
+
+    public void setImgCartCount(int count) {
+        mActivityAdminMainBinding.toolbar.tvCart.setText(String.valueOf(count));
+    }
 }

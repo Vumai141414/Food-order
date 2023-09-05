@@ -44,6 +44,8 @@ public class AdminOrderFragment extends BaseFragment {
     protected void initToolbar() {
         if (getActivity() != null) {
             ((AdminMainActivity) getActivity()).setToolBar(getString(R.string.order));
+            ((AdminMainActivity) getActivity()).setImgCartVisibility(true);
+            ((AdminMainActivity) getActivity()).setImgCartCount(mListOrder.size())
         }
     }
 
@@ -73,6 +75,7 @@ public class AdminOrderFragment extends BaseFragment {
                             return;
                         }
                         mListOrder.add(0, order);
+                        initToolbar();
                         mAdminOrderAdapter.notifyDataSetChanged();
                     }
 
@@ -90,6 +93,7 @@ public class AdminOrderFragment extends BaseFragment {
                                 break;
                             }
                         }
+                        initToolbar();
                         mAdminOrderAdapter.notifyDataSetChanged();
                     }
 
