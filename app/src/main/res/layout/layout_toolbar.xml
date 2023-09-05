@@ -33,7 +33,8 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/define_dimen_4"
-        android:padding="@dimen/define_dimen_6">
+        android:padding="@dimen/define_dimen_6"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="@dimen/define_dimen_45"
@@ -45,9 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:text="0"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:text="0" />
+            android:textSize="16sp" />
     </FrameLayout>
 
 
